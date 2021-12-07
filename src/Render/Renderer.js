@@ -7,7 +7,8 @@ export default function Renderer(
 	camera,
 	controls,
 	objects,
-	directionalLigth
+	directional,
+	audio
 ) {
 	const renderer = new WebGLRenderer({ canvas });
 	const pixelRatio = window.devicePixelRatio;
@@ -15,14 +16,16 @@ export default function Renderer(
 	function render(time) {
 		time *= 0.001;
 
-		directionalLigth.position.x = Math.sin(time) * 2;
-		directionalLigth.position.z = Math.cos(time) * 2;
+		directional.position.x = Math.sin(time) * 2;
+		directional.position.z = Math.cos(time) * 2;
 
 		objects.cube.rotation.x = time;
 		objects.cube.rotation.y = time;
 
 		objects.pointSphere.rotation.y = time;
 		objects.pointSphere.rotation.z = Math.sin(time) * 0.1;
+
+		objects.cube.material.displacementScale = audio.dataArray[0] / 455;
 
 		if (ResizeRenderer(canvas, pixelRatio, renderer)) {
 			camera.aspect = canvas.clientWidth / canvas.clientHeight;

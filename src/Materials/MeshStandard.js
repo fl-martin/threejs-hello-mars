@@ -1,21 +1,19 @@
-import { DoubleSide, FrontSide, MeshStandardMaterial } from "three";
+import { MeshStandardMaterial } from "three";
 
 export default function MeshStandard(color = null, textures) {
 	const material = new MeshStandardMaterial({
 		color: color,
-		map: textures.baseColor || undefined,
-		normalMap: textures.normalMap || undefined,
-		displacementMap: textures.displacementMap || undefined,
+		map: textures.baseColor || null,
+		normalMap: textures.normalMap || null,
+		displacementMap: textures.displacementMap || null,
 		displacementScale: 0,
-		roughnessMap: textures.roughnessMap || undefined,
+		roughnessMap: textures.roughnessMap || null,
 		roughness: 1,
-		aoMap: textures.aoMap || undefined,
-		alphaMap: textures.alphaMap || undefined,
+		aoMap: textures.aoMap || null,
+		alphaMap: textures.alphaMap || null,
 		transparent: true,
-		metalnessMap: textures.metalnessMap || undefined,
+		metalnessMap: textures.metalnessMap || null,
 	});
 
 	return material;
 }
-
-//escribir OR null por los casos en los que no contenga es map
