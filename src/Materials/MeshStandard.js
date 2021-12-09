@@ -11,7 +11,6 @@ export default function MeshStandard(color = null, textures) {
 		roughness: 1,
 		aoMap: textures.aoMap || null,
 		alphaMap: textures.alphaMap || null,
-		transparent: true,
 		metalnessMap: textures.metalnessMap || null,
 	});
 

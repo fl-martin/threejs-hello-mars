@@ -1,10 +1,11 @@
+import { DoubleSide } from "three";
 import CreateMesh from "./Mesh";
 import CreatePoints from "./Points";
 
 export default function CreateObjects(geometries, materials) {
 	const floor = CreateMesh(
 		geometries.plane,
-		materials.MMStandardMaterial,
+		materials.BIStandardMaterial,
 		{ posX: 0, posY: -3, posZ: 0 },
 		{
 			rotX: Math.PI / -2,
@@ -12,35 +13,31 @@ export default function CreateObjects(geometries, materials) {
 			rotZ: 0,
 		}
 	);
+	floor.scale.set(10, 10, 1);
+	floor.material.roughness = 5;
+	floor.material.displacementScale = -5;
+
 	const wallL = CreateMesh(
 		geometries.plane,
 		materials.MMStandardMaterial,
-		{ posX: -3.5, posY: 0.5, posZ: 0 },
+		{ posX: -3.5, posY: 5, posZ: 0 },
 		{
 			rotX: 0,
 			rotY: Math.PI / 2,
 			rotZ: 0,
 		}
 	);
-	const wallC = CreateMesh(
-		geometries.plane,
-		materials.MMStandardMaterial,
-		{ posX: 0, posY: 0.5, posZ: -3.5 },
-		{
-			rotX: 0,
-			rotY: 0,
-			rotZ: 0,
-		}
-	);
-	wallC.material.displacementScale = 0.1;
+	wallL.material.side = DoubleSide;
+	wallL.material.transparent = true;
 
-	const cube = CreateMesh(geometries.box, materials.SIStandardMaterial);
+	const sphere = CreateMesh(geometries.sphere, materials.SIStandardMaterial);
+	sphere.material.roughness = 10;
+	sphere.material.side = DoubleSide;
 
 	const pointSphere = CreatePoints(
 		geometries.sphere,
 		materials.pointsMaterial
 	);
-	pointSphere.add(cube);
 
-	return { floor, wallC, wallL, cube, pointSphere };
+	return { floor, wallL, sphere, pointSphere };
 }

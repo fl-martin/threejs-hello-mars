@@ -1,4 +1,4 @@
-import { Points } from "three";
+import { Points, RepeatWrapping } from "three";
 import MeshStandard from "./MeshStandard";
 
 export default function CreateMaterials(textures) {
@@ -6,7 +6,14 @@ export default function CreateMaterials(textures) {
 
 	const MMStandardMaterial = MeshStandard("", textures.MMtextures);
 
+	const BIStandardMaterial = MeshStandard("violet", textures.BItextures);
+
 	const pointsMaterial = new Points("blue", 0.04);
 
-	return { SIStandardMaterial, MMStandardMaterial, pointsMaterial };
+	return {
+		SIStandardMaterial,
+		MMStandardMaterial,
+		BIStandardMaterial,
+		pointsMaterial,
+	};
 }

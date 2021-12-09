@@ -1,6 +1,6 @@
 import PerspectiveCam from "./Cameras/Perspective";
 import Renderer from "./Render/Renderer";
-import { Color, Scene } from "three";
+import { Color, Fog, Scene } from "three";
 import Orbit from "./Cameras/OrbitControl";
 import webAudio from "./Media/webAudio";
 import getMedia from "./Media/getMedia";
@@ -17,13 +17,13 @@ import CreateObjects from "./Objects/CreateObjects";
 	const audio = webAudio(media);
 
 	const scene = new Scene();
-	scene.background = new Color(0xfeeff2);
+	scene.background = new Color(0xffd6fc);
+	scene.fog = new Fog(new Color(0xffd6fc), 8, 40);
 
 	const camera = PerspectiveCam();
 	const controls = Orbit(camera, canvas);
 
-	const { directional, ambient } = CreateLights(scene);
-	scene.add(directional, ambient);
+	const lights = CreateLights(scene);
 
 	const geometries = CreateGeometries();
 
@@ -33,7 +33,13 @@ import CreateObjects from "./Objects/CreateObjects";
 
 	const objects = CreateObjects(geometries, materials);
 
-	scene.add(objects.floor, objects.wallL, objects.wallC, objects.cube);
+	scene.add(
+		lights.directional,
+		lights.ambient,
+		objects.floor,
+		objects.sphere,
+		objects.wallL
+	);
 
 	const renderer = Renderer(
 		scene,
@@ -41,7 +47,7 @@ import CreateObjects from "./Objects/CreateObjects";
 		camera,
 		controls,
 		objects,
-		directional,
+		lights,
 		audio
 	);
 })();
