@@ -6,7 +6,7 @@ export default function PerspectiveCam() {
 	const near = 0.1;
 	const far = 50;
 	const camera = new PerspectiveCamera(fov, aspect, near, far);
-	camera.position.z = 2;
+	camera.position.z = 20;
 
 	return camera;
 }
