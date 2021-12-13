@@ -38,7 +38,8 @@ import CreateObjects from "./Objects/CreateObjects";
 		lights.ambient,
 		objects.floor,
 		objects.sphere,
-		objects.wallL
+		objects.wallL,
+		objects.mirrorBox
 	);
 
 	const renderer = Renderer(
@@ -51,3 +52,11 @@ import CreateObjects from "./Objects/CreateObjects";
 		audio
 	);
 })();
+
+//blur en el mirror
+//camera animation
+//textura shader
+//imagen background
+//post processing
+//interactividad mouse
+//ver textura

@@ -1,5 +1,11 @@
 import { WebGLRenderer } from "three";
 import ResizeRenderer from "./ResizeRenderer";
+import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
+import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
+import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
+import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass.js";
+import { AfterimagePass } from "three/examples/jsm/postprocessing/AfterimagePass.js";
+import { FXAAShader } from "three/examples/jsm/shaders/FXAAShader.js";
 
 export default function Renderer(
 	scene,
@@ -10,8 +16,18 @@ export default function Renderer(
 	lights,
 	audio
 ) {
-	const renderer = new WebGLRenderer({ canvas });
+	const renderer = new WebGLRenderer({ canvas, antialias: true });
 	const pixelRatio = window.devicePixelRatio;
+
+	const composer = new EffectComposer(renderer);
+	composer.addPass(new RenderPass(scene, camera));
+
+	const fxaaPass = new ShaderPass(FXAAShader);
+	composer.addPass(fxaaPass);
+
+	const unrealBloomPass = new UnrealBloomPass({}, 0.2, 1, 0.8);
+	unrealBloomPass.renderToScreen = true;
+	composer.addPass(unrealBloomPass);
 
 	function render(time) {
 		time *= 0.001;
@@ -21,20 +37,21 @@ export default function Renderer(
 
 		objects.sphere.rotation.x = time * 0.1;
 		objects.sphere.rotation.y = time * 0.1;
-
-		objects.pointSphere.rotation.y = time;
-		objects.pointSphere.rotation.z = Math.sin(time) * 0.1;
-
 		objects.sphere.material.displacementScale = audio.dataArray[40] / 10;
+
+		objects.wallL.position.y = Math.sin(time * 0.1) * 1.2 + 1.6;
+
+		objects.mirrorBox.rotation.y = Math.sin(time * 0.2) * 0.4 - 0.7;
 
 		if (ResizeRenderer(canvas, pixelRatio, renderer)) {
 			camera.aspect = canvas.clientWidth / canvas.clientHeight;
 			camera.updateProjectionMatrix();
+			composer.setSize(canvas.width, canvas.height);
 		}
 
 		controls.update();
 
-		renderer.render(scene, camera);
+		composer.render(scene, camera);
 
 		requestAnimationFrame(render);
 	}
