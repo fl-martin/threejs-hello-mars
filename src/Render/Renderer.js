@@ -1,11 +1,6 @@
 import { WebGLRenderer } from "three";
+import Composer from "./Composer";
 import ResizeRenderer from "./ResizeRenderer";
-import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
-import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
-import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
-import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass.js";
-import { AfterimagePass } from "three/examples/jsm/postprocessing/AfterimagePass.js";
-import { FXAAShader } from "three/examples/jsm/shaders/FXAAShader.js";
 
 export default function Renderer(
 	scene,
@@ -19,15 +14,7 @@ export default function Renderer(
 	const renderer = new WebGLRenderer({ canvas, antialias: true });
 	const pixelRatio = window.devicePixelRatio;
 
-	const composer = new EffectComposer(renderer);
-	composer.addPass(new RenderPass(scene, camera));
-
-	const fxaaPass = new ShaderPass(FXAAShader);
-	composer.addPass(fxaaPass);
-
-	const unrealBloomPass = new UnrealBloomPass({}, 0.2, 1, 0.4);
-	unrealBloomPass.renderToScreen = true;
-	composer.addPass(unrealBloomPass);
+	const composer = Composer(scene, camera, renderer);
 
 	function render(time) {
 		time *= 0.001;
@@ -35,9 +22,9 @@ export default function Renderer(
 		lights.directional.position.x = Math.sin(time) * 2;
 		lights.directional.position.z = Math.cos(time) * 2;
 
-		objects.torus.rotation.x = time * 0.1;
-		objects.torus.rotation.y = time * 0.1;
-		objects.torus.material.displacementScale = audio.dataArray[40] / 10;
+		objects.torus.rotation.x = time * 0.05;
+		objects.torus.rotation.y = time * 0.05;
+		//	objects.torus.material.displacementScale = audio.dataArray[40] / 10;
 
 		objects.wallL.position.y = Math.sin(time * 0.1) * 1.2 + 1.6;
 

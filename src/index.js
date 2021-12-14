@@ -58,6 +58,5 @@ import CreateObjects from "./Objects/CreateObjects";
 //camera animation
 //textura shader
 //imagen background
-//post processing
 //interactividad mouse
 //ver textura sphere y torus
