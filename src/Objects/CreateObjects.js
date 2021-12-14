@@ -34,6 +34,11 @@ export default function CreateObjects(geometries, materials) {
 	wallL.material.roughness = 0;
 	wallL.material.metalness = 0.8;
 
+	const torus = CreateMesh(geometries.torus, materials.SIStandardMaterial);
+	torus.material.roughness = 0;
+	torus.material.metalness = 1;
+	torus.material.side = DoubleSide;
+
 	const sphere = CreateMesh(geometries.sphere, materials.SIStandardMaterial);
 	sphere.material.roughness = 1;
 	sphere.material.metalness = 0;
@@ -50,5 +55,5 @@ export default function CreateObjects(geometries, materials) {
 	mirrorBox.position.set(3, 2, -5);
 	mirrorBox.scale.set(2, 2);
 
-	return { floor, wallL, sphere, pointSphere, mirrorBox };
+	return { floor, wallL, torus, sphere, pointSphere, mirrorBox };
 }

@@ -7,7 +7,7 @@ export default function CreateTextures() {
 	const SItextures = SurfaceImperfection();
 
 	const MMtextures = MetalMesh();
-	RepeatTextures(MMtextures, 4);
+	RepeatTextures(MMtextures, 2);
 
 	const BItextures = BlueIce();
 

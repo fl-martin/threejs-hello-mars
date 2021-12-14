@@ -18,7 +18,7 @@ import CreateObjects from "./Objects/CreateObjects";
 
 	const scene = new Scene();
 	scene.background = new Color(0xffd6fc);
-	scene.fog = new Fog(new Color(0xffd6fc), 8, 40);
+	scene.fog = new Fog(new Color(0xffd6fc), 15, 40);
 
 	const camera = PerspectiveCam();
 	const controls = Orbit(camera, canvas);
@@ -37,6 +37,7 @@ import CreateObjects from "./Objects/CreateObjects";
 		lights.directional,
 		lights.ambient,
 		objects.floor,
+		objects.torus,
 		objects.sphere,
 		objects.wallL,
 		objects.mirrorBox
@@ -59,4 +60,4 @@ import CreateObjects from "./Objects/CreateObjects";
 //imagen background
 //post processing
 //interactividad mouse
-//ver textura
+//ver textura sphere y torus
