@@ -1,4 +1,4 @@
-import { Color, DoubleSide, PlaneBufferGeometry } from "three";
+import { DoubleSide, PlaneBufferGeometry } from "three";
 import CreateMesh from "./Mesh";
 import CreatePoints from "./Points";
 import { Reflector } from "three/examples/jsm/objects/Reflector";
@@ -15,8 +15,8 @@ export default function CreateObjects(geometries, materials) {
 		}
 	);
 	floor.scale.set(10, 10, 1);
-	floor.material.metalness = 0.7;
-	floor.material.roughness = 0.8;
+	floor.material.metalness = 0;
+	floor.material.roughness = 2;
 	floor.material.displacementScale = -5;
 
 	const wallL = CreateMesh(
@@ -35,9 +35,9 @@ export default function CreateObjects(geometries, materials) {
 	wallL.material.metalness = 0.8;
 
 	const torus = CreateMesh(geometries.torus, materials.SIStandardMaterial);
-	torus.material.roughness = 0;
-	torus.material.metalness = 1;
-	torus.material.side = DoubleSide;
+	torus.material.roughness = 0.9;
+	torus.material.metalness = 0.2;
+	//torus.material.flatShading = true;
 
 	const sphere = CreateMesh(geometries.sphere, materials.SIStandardMaterial);
 	sphere.material.roughness = 1;

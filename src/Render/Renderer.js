@@ -22,9 +22,10 @@ export default function Renderer(
 		lights.directional.position.x = Math.sin(time) * 2;
 		lights.directional.position.z = Math.cos(time) * 2;
 
-		objects.torus.rotation.x = time * 0.05;
-		objects.torus.rotation.y = time * 0.05;
-		//	objects.torus.material.displacementScale = audio.dataArray[40] / 10;
+		//	objects.torus.rotation.x = time * 0.05;
+		//	objects.torus.rotation.y = time * 0.05;
+
+		//objects.sphere.material.displacementScale = audio.dataArray[40] / 255;
 
 		objects.wallL.position.y = Math.sin(time * 0.1) * 1.2 + 1.6;
 

@@ -13,12 +13,12 @@ export default function CreateGeometries() {
 
 	const sphere = new SphereGeometry(3, 100, 20);
 
-	const radius = 20; // ui: radius
-	const tubeRadius = 0.3; // ui: tubeRadius
+	const radius = 35; // ui: radius
+	const tubeRadius = 0.4; // ui: tubeRadius
 	const radialSegments = 8; // ui: radialSegments
 	const tubularSegments = 64; // ui: tubularSegments
-	const p = 2; // ui: p
-	const q = 3; // ui: q
+	const p = 20; // ui: p
+	const q = 35; // ui: q
 	const torus = new TorusKnotGeometry(
 		radius,
 		tubeRadius,

@@ -1,4 +1,5 @@
 import BlueIce from "./BlueIce";
+import ConcreteBlocks from "./ConcreteBlocks";
 import MetalMesh from "./MetalMesh";
 import RepeatTextures from "./RepeatTextures";
 import SurfaceImperfection from "./SurfaceImperfection";
@@ -11,5 +12,8 @@ export default function CreateTextures() {
 
 	const BItextures = BlueIce();
 
-	return { SItextures, MMtextures, BItextures };
+	const CBtextures = ConcreteBlocks();
+	RepeatTextures(CBtextures, 4);
+
+	return { SItextures, MMtextures, BItextures, CBtextures };
 }
