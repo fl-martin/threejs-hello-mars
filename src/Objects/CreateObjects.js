@@ -14,9 +14,9 @@ export default function CreateObjects(geometries, materials) {
 			rotZ: 0,
 		}
 	);
-	floor.scale.set(10, 10, 1);
+	floor.scale.set(15, 15, 1);
 	floor.material.metalness = 0;
-	floor.material.roughness = 2;
+	floor.material.roughness = 1;
 	floor.material.displacementScale = -5;
 
 	const wallL = CreateMesh(
@@ -39,10 +39,11 @@ export default function CreateObjects(geometries, materials) {
 	torus.material.metalness = 0.2;
 	//torus.material.flatShading = true;
 
-	const sphere = CreateMesh(geometries.sphere, materials.SIStandardMaterial);
-	sphere.material.roughness = 1;
-	sphere.material.metalness = 0;
-	sphere.material.side = DoubleSide;
+	const tetra = CreateMesh(geometries.tetra, materials.GPStandardMaterial);
+	tetra.material.roughness = 0.4;
+	tetra.material.metalness = 0.6;
+	tetra.material.flatShading = true;
+	tetra.position.y = 2;
 
 	const pointSphere = CreatePoints(
 		geometries.sphere,
@@ -53,7 +54,7 @@ export default function CreateObjects(geometries, materials) {
 		color: "red",
 	});
 	mirrorBox.position.set(3, 2, -5);
-	mirrorBox.scale.set(2, 2);
+	mirrorBox.scale.set(4, 4);
 
-	return { floor, wallL, torus, sphere, pointSphere, mirrorBox };
+	return { floor, wallL, torus, tetra, pointSphere, mirrorBox };
 }

@@ -1,5 +1,6 @@
 import BlueIce from "./BlueIce";
 import ConcreteBlocks from "./ConcreteBlocks";
+import GlassPattern from "./GlassPattern";
 import MetalMesh from "./MetalMesh";
 import RepeatTextures from "./RepeatTextures";
 import SurfaceImperfection from "./SurfaceImperfection";
@@ -15,5 +16,7 @@ export default function CreateTextures() {
 	const CBtextures = ConcreteBlocks();
 	RepeatTextures(CBtextures, 4);
 
-	return { SItextures, MMtextures, BItextures, CBtextures };
+	const GPtextures = GlassPattern();
+
+	return { SItextures, MMtextures, BItextures, GPtextures };
 }

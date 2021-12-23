@@ -1,8 +1,7 @@
 import {
 	BoxGeometry,
-	CylinderGeometry,
 	PlaneGeometry,
-	SphereGeometry,
+	TetrahedronGeometry,
 	TorusKnotGeometry,
 } from "three";
 
@@ -11,7 +10,7 @@ export default function CreateGeometries() {
 
 	const box = new BoxGeometry(2, 2, 2);
 
-	const sphere = new SphereGeometry(3, 100, 20);
+	const tetra = new TetrahedronGeometry(2.3, 5);
 
 	const radius = 35; // ui: radius
 	const tubeRadius = 0.4; // ui: tubeRadius
@@ -28,5 +27,5 @@ export default function CreateGeometries() {
 		q
 	);
 
-	return { plane, box, sphere, torus };
+	return { plane, box, tetra, torus };
 }

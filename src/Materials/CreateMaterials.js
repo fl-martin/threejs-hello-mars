@@ -9,7 +9,8 @@ export default function CreateMaterials(textures) {
 
 	const BIStandardMaterial = MeshStandard("violet", textures.BItextures);
 
-	const CBStandardMaterial = MeshPhysical("", textures.CBtextures);
+	const GPStandardMaterial = MeshPhysical("#ffc32b", textures.GPTextures);
+	//GPStandardMaterial.displacementScale = 20;
 
 	const pointsMaterial = new Points("blue", 0.04);
 
@@ -17,7 +18,7 @@ export default function CreateMaterials(textures) {
 		SIStandardMaterial,
 		MMStandardMaterial,
 		BIStandardMaterial,
-		CBStandardMaterial,
+		GPStandardMaterial,
 		pointsMaterial,
 	};
 }

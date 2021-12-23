@@ -23,7 +23,7 @@ export default function Renderer(
 		lights.directional.position.z = Math.cos(time) * 2;
 
 		//	objects.torus.rotation.x = time * 0.05;
-		//	objects.torus.rotation.y = time * 0.05;
+		objects.tetra.rotation.y = time * 0.4;
 
 		//objects.sphere.material.displacementScale = audio.dataArray[40] / 255;
 

@@ -35,10 +35,11 @@ import CreateObjects from "./Objects/CreateObjects";
 
 	scene.add(
 		lights.directional,
+		lights.directional2,
 		lights.ambient,
 		objects.floor,
 		objects.torus,
-		objects.sphere,
+		objects.tetra,
 		objects.wallL,
 		objects.mirrorBox
 	);
